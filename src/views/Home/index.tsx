@@ -77,24 +77,31 @@ export const Home = () => {
 
   return (
     <>
-      <Select
-        onChange={handleChangeChannels}
-        options={sortedChannelOptions}
-        placeholder="Select your channels..."
-        value={sortedSelectedChannels}
-      />
+      <section className="container">
+        <h1>Compare Streaming TV Services</h1>
+        <p>We currently support the following services: {services?.map((service: any) => service.name).join(', ')}</p>
+        <Select
+          onChange={handleChangeChannels}
+          options={sortedChannelOptions}
+          placeholder="Select your channels to compare services..."
+          value={sortedSelectedChannels}
+        />
+      </section>
       {comparisons.length > 0 && (
-        <section>
-          <h2>Comparison</h2>
+        <section className="container">
+          <h2>Comparisons</h2>
+          <p>Below are the best matches for your selected channels.</p>
+          <ul>
             {comparisons.map((comparison: any, index: number) => (
-              <section key={comparison.id}>
+              <li key={comparison.id}>
                 <h2>{comparison.name}{index === 0 && <span> - Best Match</span>}</h2>
                 <p><strong>Percentage Match:</strong> {comparison.percentage}%</p>
                 {comparison.missing.length > 0 && (
                   <p><strong>Missing channels:</strong> {comparison.missing.map((channel: any) => channel.label).join(', ')}</p>
                 )}
-            </section>
+              </li>
             ))}
+          </ul>
         </section>
       )}
     </>
