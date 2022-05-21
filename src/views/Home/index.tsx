@@ -1,16 +1,18 @@
 import { useMemo, useState } from "react";
 import { Select } from "../../components/Select";
-import { useServices } from "../../hooks/query/useServices";
+import { huluData } from "../../data/hulu";
+import { slingData } from "../../data/sling";
+import { youtubeData } from "../../data/youtube";
 
 interface Channel {
   id: string;
   name: string;
 }
 
+const services = [huluData, slingData, youtubeData];
+
 export const Home = () => {
   const [selectedChannels, setSelectedChannels] = useState<any[]>([]);
-
-  const { data: services } = useServices();
 
   const sortedChannelOptions = useMemo(() => {
     if (!services) return [];
@@ -28,7 +30,7 @@ export const Home = () => {
     return Array.from(channelMap.values())
       .sort((a: any, b: any) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0)
       .map((channel: any) => ({ label: channel.name, value: channel.id }));
-  }, [services]);
+  }, []);
 
   const sortedSelectedChannels = useMemo(() => selectedChannels
     ?.slice()
@@ -40,7 +42,7 @@ export const Home = () => {
       ?.slice()
       ?.sort((a: Channel, b: Channel) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1)
     ?? []
-  , [services]);
+  , []);
 
   const handleChangeChannels = (values: any) => setSelectedChannels(values);
 
