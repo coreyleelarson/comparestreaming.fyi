@@ -1,13 +1,12 @@
+import classNames from "classnames";
 import { useMemo, useState } from "react";
+import { PercentageRing } from "../../components/PercentageRing";
 import { Select } from "../../components/Select";
 import { huluData } from "../../data/hulu";
 import { slingData } from "../../data/sling";
 import { youtubeData } from "../../data/youtube";
-
-interface Channel {
-  id: string;
-  name: string;
-}
+import { Service } from "../../types";
+import styles from "./Home.module.css";
 
 const services = [huluData, slingData, youtubeData];
 
@@ -16,62 +15,79 @@ export const Home = () => {
 
   const sortedChannelOptions = useMemo(() => {
     if (!services) return [];
-    
+
     const channelMap = new Map();
 
     for (const service of services) {
       for (const channel of service.channels) {
-        if (!channelMap.has(channel.id)) {
-          channelMap.set(channel.id, channel);
+        if (!channelMap.has(channel.name)) {
+          channelMap.set(channel.name, channel);
         }
       }
     }
 
     return Array.from(channelMap.values())
-      .sort((a: any, b: any) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0)
-      .map((channel: any) => ({ label: channel.name, value: channel.id }));
+      .sort((a: any, b: any) =>
+        a.name.toLowerCase() < b.name.toLowerCase()
+          ? -1
+          : a.name.toLowerCase() > b.name.toLowerCase()
+          ? 1
+          : 0
+      )
+      .map((channel: any) => ({ label: channel.name, value: channel.name }));
   }, []);
 
-  const sortedSelectedChannels = useMemo(() => selectedChannels
-    ?.slice()
-    ?.sort((a: any, b: any) => a.label.toLowerCase() < b.label.toLowerCase() ? -1 : 1)
-  , [selectedChannels]);
+  const sortedSelectedChannels = useMemo(
+    () =>
+      selectedChannels
+        ?.slice()
+        ?.sort((a: any, b: any) =>
+          a.label.toLowerCase() < b.label.toLowerCase() ? -1 : 1
+        ),
+    [selectedChannels]
+  );
 
-  const sortedServices = useMemo(() =>
-    services
-      ?.slice()
-      ?.sort((a: Channel, b: Channel) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1)
-    ?? []
-  , []);
+  const sortedServices = useMemo(
+    () =>
+      services
+        ?.slice()
+        ?.sort((a: Service, b: Service) =>
+          a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
+        ) ?? [],
+    []
+  );
 
   const handleChangeChannels = (values: any) => setSelectedChannels(values);
 
   const comparisons = useMemo(() => {
     let result = [];
 
-    if (selectedChannels.length) {
-      for (const service of sortedServices) {
-        let count = 0;
-        let missing = [];
-        
-        for (const channel of selectedChannels) {
-          if (service.channels.some((instance: any) => instance.id === channel.value)) {
-            count++;
-          } else {
-            missing.push(channel);
-          }
+    for (const service of sortedServices) {
+      let count = 0;
+      let missing = [];
+
+      for (const channel of selectedChannels) {
+        if (
+          service.channels.some(
+            (instance: any) => instance.name === channel.value
+          )
+        ) {
+          count++;
+        } else {
+          missing.push(channel);
         }
-  
-        result.push({
-          id: service.id,
-          name: service.name,
-          missing,
-          percentage: Math.round((count / selectedChannels.length) * 100) || 0,
-        });
-  
       }
-  
-      result.sort((a: any, b: any) => a.percentage < b.percentage ? 1 : a.percentage > b.percentage ? -1 : 0);
+
+      result.push({
+        name: service.name,
+        missing,
+        color: service.color,
+        percentage: Math.round((count / selectedChannels.length) * 100) || 0,
+      });
+
+      result.sort((a: any, b: any) =>
+        a.percentage < b.percentage ? 1 : a.percentage > b.percentage ? -1 : 0
+      );
     }
 
     return result;
@@ -79,9 +95,9 @@ export const Home = () => {
 
   return (
     <>
-      <section className="container">
+      <section className={classNames("container", styles.header)}>
         <h1>Compare Streaming TV Services</h1>
-        <p>We currently support the following services: {services?.map((service: any) => service.name).join(', ')}</p>
+        <p>Select your channels to view comparisons below:</p>
         <Select
           onChange={handleChangeChannels}
           options={sortedChannelOptions}
@@ -89,23 +105,19 @@ export const Home = () => {
           value={sortedSelectedChannels}
         />
       </section>
-      {comparisons.length > 0 && (
-        <section className="container">
-          <h2>Comparisons</h2>
-          <p>Below are the best matches for your selected channels.</p>
-          <ul>
-            {comparisons.map((comparison: any, index: number) => (
-              <li key={comparison.id}>
-                <h2>{comparison.name}{index === 0 && <span> - Best Match</span>}</h2>
-                <p><strong>Percentage Match:</strong> {comparison.percentage}%</p>
-                {comparison.missing.length > 0 && (
-                  <p><strong>Missing channels:</strong> {comparison.missing.map((channel: any) => channel.label).join(', ')}</p>
-                )}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      <section className={classNames("container", styles.comparisons)}>
+        <ul className={styles.list}>
+          {comparisons.map((comparison: any, index: number) => (
+            <li className={styles.item} key={comparison.id}>
+              <h2>{comparison.name}</h2>
+              <PercentageRing
+                color={comparison.color}
+                percentage={comparison.percentage}
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
     </>
   );
-}
+};

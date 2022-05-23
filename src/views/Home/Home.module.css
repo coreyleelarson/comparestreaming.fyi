@@ -1,0 +1,31 @@
+.header {
+  margin-bottom: 3rem;
+}
+
+.list {
+  align-items: center;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(3, 1fr);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.item {
+  background-color: #FFF;
+  border-radius: 3rem;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
+  color: #222;
+  padding: 4rem;
+  position: relative;
+}
+.item h2 {
+  top: 1rem;
+  font-size: 1.6rem;
+  position: absolute;
+  left: 2rem;
+}
