@@ -110,7 +110,7 @@ export const Home = () => {
     <>
       <section className={classNames("container", styles.header)}>
         <h1>Compare Streaming TV Services</h1>
-        <p>Select your channels to view comparisons below:</p>
+        <p>Select your desired channels to view comparisons below:</p>
         <Select
           onChange={handleChangeChannels}
           options={sortedChannelOptions}
