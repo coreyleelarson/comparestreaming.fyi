@@ -1,5 +1,8 @@
 .header {
-  margin-bottom: 3rem;
+  background-color: var(--color-blue);
+  padding-top: 3rem;
+  padding-bottom: 10rem;
+  margin-bottom: -7rem;
 }
 .header p {
   margin-bottom: 2rem;

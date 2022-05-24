@@ -132,16 +132,18 @@ export const Home = () => {
 
   return (
     <>
-      <section className={classNames("container", styles.header)}>
-        <h1>Compare Streaming TV Services</h1>
-        <p>Select your desired channels to view comparisons below:</p>
-        <Select
-          onChange={handleChangeChannels}
-          options={sortedChannelOptions}
-          placeholder="Select your channels to compare services..."
-          value={sortedSelectedChannels}
-        />
-      </section>
+      <header className={styles.header}>
+        <div className="container">
+          <h1>Compare Streaming TV Services</h1>
+          <p>Select your desired channels to view comparisons below:</p>
+          <Select
+            onChange={handleChangeChannels}
+            options={sortedChannelOptions}
+            placeholder="Select your channels to compare services..."
+            value={sortedSelectedChannels}
+          />
+        </div>
+      </header>
       <section className={classNames("container", styles.comparisons)}>
         <ul className={styles.list}>
           {comparisons.map((comparison: any) => (

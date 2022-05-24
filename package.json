@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "scrape": "ts-node ./scrapers/sling.ts",
     "lint": "eslint",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -51,6 +52,8 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "puppeteer": "^14.1.1",
+    "ts-node": "^10.8.0"
   }
 }
