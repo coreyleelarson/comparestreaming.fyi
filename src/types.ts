@@ -159,7 +159,7 @@ export enum Channels {
   LawCrime = "Lawn & Crime",
   LawCrimeTrial = "Law & Crime Trial Network",
   Lifetime = "Lifetime",
-  LifetimeMovie = "LifetimeMovieNetwork",
+  LifetimeMovie = "Lifetime Movie Network",
   LiveNowFox = "LiveNOW from Fox",
   LMN = "LMN",
   Local = "Local Now",
@@ -327,6 +327,7 @@ export enum Channels {
 export interface Service {
   channels: Channel[];
   color: string;
+  features?: string[];
   name: Services;
 }
 

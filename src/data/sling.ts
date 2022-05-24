@@ -3,6 +3,7 @@ import { Channels, Service, Services } from "../types";
 export const slingData: Service = {
   color: "#31acdf",
   name: Services.Sling,
+  features: ["1 or 3 device streams", "Add on 50 or 200 hours DVR"],
   channels: [
     { name: Channels.ACC },
     { name: Channels.ACCExtra },

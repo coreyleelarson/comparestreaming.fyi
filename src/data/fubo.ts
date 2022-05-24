@@ -3,6 +3,7 @@ import { Channels, Service, Services } from "../types";
 export const fuboData: Service = {
   color: "#FF9900",
   name: Services.Fubu,
+  features: ["Unlimited device streams", "1000 hrs DVR"],
   channels: [
     { name: Channels.ABC },
     { name: Channels.ABCLocalish },

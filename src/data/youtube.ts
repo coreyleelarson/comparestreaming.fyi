@@ -3,6 +3,7 @@ import { Channels, Service, Services } from "../types";
 export const youtubeData: Service = {
   color: "#FF0000",
   name: Services.YouTube,
+  features: ["3 device streams", "Unlimited DVR"],
   channels: [
     { name: Channels.ABC },
     { name: Channels.ABCNews },

@@ -41,23 +41,29 @@
 }
 
 .item {
-  align-items: center;
   background-color: var(--color-white);
   border-radius: 3rem;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
   color: var(--color-dark-gray);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
   gap: 2rem;
-  padding: 4rem;
+  padding: 2rem;
   position: relative;
   width: calc((100% - (var(--list-gap) * (var(--list-columns) - 1))) / var(--list-columns));
 }
-.item h2 {
-  top: 1rem;
+.item .content {
+  text-align: left;
+}
+.item .content h2 {
   font-size: 1.6rem;
-  position: absolute;
-  left: 2rem;
+}
+
+.item .features {
+  font-size: 1.2rem;
+  list-style: circle inside;
+  margin: 0 0 1rem;
+  padding: 0;
 }
 
 .missing {
@@ -65,6 +71,12 @@
 }
 
 @media screen and (min-width: 768px) {
+  .list {
+    --list-columns: 2;
+  }
+}
+
+@media screen and (min-width: 1024px) {
   .list {
     --list-columns: 3;
   }

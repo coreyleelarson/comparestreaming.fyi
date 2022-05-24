@@ -9,9 +9,9 @@ import { huluData } from "../../data/hulu";
 import { philoData } from "../../data/philo";
 import { slingData } from "../../data/sling";
 import { youtubeData } from "../../data/youtube";
-import { useSelectedChannels } from "../../hooks/useSelectedChannels";
 import { useChannelOptions } from "../../hooks/useChannelOptions";
 import { useComparisons } from "../../hooks/useComparisons";
+import { useSelectedChannels } from "../../hooks/useSelectedChannels";
 import styles from "./Home.module.css";
 
 const services = [huluData, fuboData, philoData, slingData, youtubeData];
@@ -69,19 +69,32 @@ export const Home = () => {
         <ul className={styles.list}>
           {comparisons.map((comparison: any) => (
             <li className={styles.item} key={comparison.name}>
-              <h2>{comparison.name}</h2>
-              <PercentageRing
-                color={comparison.color}
-                percentage={comparison.percentage}
-              />
-              {comparison.missing.length > 0 && (
-                <p className={styles.missing}>
-                  <strong>Missing:</strong>{" "}
-                  {comparison.missing
-                    .map((channel: any) => channel.label)
-                    .join(", ")}
-                </p>
-              )}
+              <div className={styles.content}>
+                <h2>{comparison.name}</h2>
+                {comparison.features && comparison.features.length > 0 && (
+                  <ul className={styles.features}>
+                    {comparison.features.map(
+                      (feature: string, index: number) => (
+                        <li key={index}>{feature}</li>
+                      )
+                    )}
+                  </ul>
+                )}
+                {comparison.missing.length > 0 && (
+                  <p className={styles.missing}>
+                    <strong>Missing:</strong>{" "}
+                    {comparison.missing
+                      .map((channel: any) => channel.label)
+                      .join(", ")}
+                  </p>
+                )}
+              </div>
+              <div>
+                <PercentageRing
+                  color={comparison.color}
+                  percentage={comparison.percentage}
+                />
+              </div>
             </li>
           ))}
         </ul>

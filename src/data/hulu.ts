@@ -3,6 +3,7 @@ import { Channels, Service, Services } from "../types";
 export const huluData: Service = {
   color: "#66aa33",
   name: Services.Hulu,
+  features: ["Unlimited DVR", "Add on unlimited device streams"],
   channels: [
     { name: Channels.ABC },
     { name: Channels.ABCLocalish },

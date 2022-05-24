@@ -21,9 +21,8 @@ export const useComparisons = (services: any[], selectedChannels: any[]) => {
       }
 
       result.push({
-        name: service.name,
+        ...service,
         missing,
-        color: service.color,
         percentage: Math.round((count / selectedChannels.length) * 100) || 0,
       });
 

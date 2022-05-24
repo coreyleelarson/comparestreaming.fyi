@@ -3,6 +3,7 @@ import { Channels, Service, Services } from "../types";
 export const philoData: Service = {
   color: "#0993F2",
   name: Services.Philo,
+  features: ["Unlimited DVR"],
   channels: [
     { name: Channels.Accuweather },
     { name: Channels.AE },
