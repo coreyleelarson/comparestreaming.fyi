@@ -1,0 +1,35 @@
+.utility-header {
+  background-color: #222;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.utility-header :global(.container) {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.utility-header ul {
+  align-items: center;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.utility-header a {
+  display: flex;
+  color: #FFF;
+}
+
+.utility-header svg {
+  fill: #FFF;
+  height: 2.5rem;
+  width: auto;
+}
+.utility-header svg path {
+  fill: currentColor;
+}

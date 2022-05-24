@@ -3,10 +3,11 @@ html {
 }
 
 body {
-  background-image: linear-gradient(#0353A4 300px, #F7F7F7 300px);
+  background-image: linear-gradient(#0353A4 350px, #F7F7F7 350px);
   color: #FFF;
   font-family: 'Lato', sans-serif;
   font-size: 1.6rem;
+  text-align: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -22,10 +23,6 @@ h1 {
 
 h2 {
   font-size: 3.6rem;
-}
-
-p {
-  font-size: 1.6rem;
 }
 
 .container {

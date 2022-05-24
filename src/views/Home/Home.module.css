@@ -1,6 +1,9 @@
 .header {
   margin-bottom: 3rem;
 }
+.header p {
+  margin-bottom: 2rem;
+}
 
 .list {
   --list-columns: 1;

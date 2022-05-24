@@ -5,7 +5,7 @@ export const huluData: Service = {
   name: Services.Hulu,
   channels: [
     { name: Channels.ABC },
-    { name: Channels.ABCLocalIsh },
+    { name: Channels.ABCLocalish },
     { name: Channels.ABCNews },
     { name: Channels.ACC },
     { name: Channels.AE },

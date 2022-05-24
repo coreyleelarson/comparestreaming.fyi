@@ -104,7 +104,7 @@ export const youtubeData: Service = {
     { name: Channels.StartTV },
     { name: Channels.Sundance },
     { name: Channels.SYFY },
-    { name: Channels.TastemadeEspanol },
+    { name: Channels.TastemadeEspañol },
     { name: Channels.TBS },
     { name: Channels.TCM },
     { name: Channels.TeenNick },

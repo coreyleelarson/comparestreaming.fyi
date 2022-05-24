@@ -120,8 +120,8 @@ export const Home = () => {
       </section>
       <section className={classNames("container", styles.comparisons)}>
         <ul className={styles.list}>
-          {comparisons.map((comparison: any, index: number) => (
-            <li className={styles.item} key={comparison.id}>
+          {comparisons.map((comparison: any) => (
+            <li className={styles.item} key={comparison.name}>
               <h2>{comparison.name}</h2>
               <PercentageRing
                 color={comparison.color}

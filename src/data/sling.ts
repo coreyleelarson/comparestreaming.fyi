@@ -61,7 +61,6 @@ export const slingData: Service = {
     { name: Channels.EpixHits },
     { name: Channels.ESPN },
     { name: Channels.ESPN2 },
-    { name: Channels.ESPN3 },
     { name: Channels.ESPNEWS },
     { name: Channels.ESPNU },
     { name: Channels.Euronews },
