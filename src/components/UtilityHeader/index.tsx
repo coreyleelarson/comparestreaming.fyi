@@ -7,6 +7,7 @@ export const UtilityHeader = () => (
       <ul>
         <li>
           <a
+            aria-label="GitHub"
             href="https://www.github.com/coreyleelarson/comparestreaming"
             target="_blank"
             rel="noreferrer"
