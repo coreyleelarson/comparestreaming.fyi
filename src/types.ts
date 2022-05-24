@@ -321,7 +321,7 @@ export enum Channels {
   WillowCricket = "Willow Cricket HD",
   WillowExtra = "Willow Extra",
   WorldFishing = "World Fishing Network",
-  YouTubeOriginals = "YouTubeOriginals",
+  YouTubeOriginals = "YouTube Originals",
   ZonaFutbol = "Zona Futbol",
 }
 
