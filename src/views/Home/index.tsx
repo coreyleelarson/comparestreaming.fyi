@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
-import spaceVideo from "../../assets/videos/space.mp4";
+// import spaceVideo from "../../assets/videos/space.mp4";
 import { PercentageRing } from "../../components/PercentageRing";
 import { Select } from "../../components/Select";
 import { fuboData } from "../../data/fubo";
@@ -51,9 +51,9 @@ export const Home = () => {
   return (
     <>
       <header className={styles.header}>
-        <video autoPlay muted loop>
+        {/* <video autoPlay muted loop>
           <source src={spaceVideo} type="video/mp4" />
-        </video>
+        </video> */}
         <div className="container">
           <h1>Compare Streaming TV Services</h1>
           <p>Select your desired channels to view comparisons below:</p>
