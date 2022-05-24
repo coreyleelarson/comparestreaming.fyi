@@ -1,6 +1,7 @@
 import classNames from "classnames";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import ReactGA from "react-ga4";
+import spaceVideo from "../../assets/videos/space.mp4";
 import { PercentageRing } from "../../components/PercentageRing";
 import { Select } from "../../components/Select";
 import { fuboData } from "../../data/fubo";
@@ -8,62 +9,20 @@ import { huluData } from "../../data/hulu";
 import { philoData } from "../../data/philo";
 import { slingData } from "../../data/sling";
 import { youtubeData } from "../../data/youtube";
-import spaceVideo from "../../assets/videos/space.mp4";
-import { Service } from "../../types";
+import { useSelectedChannels } from "../../hooks/useSelectedChannels";
+import { useChannelOptions } from "../../hooks/useChannelOptions";
+import { useComparisons } from "../../hooks/useComparisons";
 import styles from "./Home.module.css";
 
 const services = [huluData, fuboData, philoData, slingData, youtubeData];
 
 export const Home = () => {
-  const [selectedChannels, setSelectedChannels] = useState<any[]>([]);
+  const [selectedChannels, setSelectedChannels] = useSelectedChannels();
+  const [channelOptions] = useChannelOptions(services);
+  const [comparisons] = useComparisons(services, selectedChannels);
 
-  const sortedChannelOptions = useMemo(() => {
-    if (!services) return [];
-
-    const channelMap = new Map();
-
-    for (const service of services) {
-      for (const channel of service.channels) {
-        if (!channelMap.has(channel.name)) {
-          channelMap.set(channel.name, channel);
-        }
-      }
-    }
-
-    return Array.from(channelMap.values())
-      .sort((a: any, b: any) =>
-        a.name.toLowerCase() < b.name.toLowerCase()
-          ? -1
-          : a.name.toLowerCase() > b.name.toLowerCase()
-          ? 1
-          : 0
-      )
-      .map((channel: any) => ({ label: channel.name, value: channel.name }));
-  }, []);
-
-  const sortedSelectedChannels = useMemo(
-    () =>
-      selectedChannels
-        ?.slice()
-        ?.sort((a: any, b: any) =>
-          a.label.toLowerCase() < b.label.toLowerCase() ? -1 : 1
-        ),
-    [selectedChannels]
-  );
-
-  const sortedServices = useMemo(
-    () =>
-      services
-        ?.slice()
-        ?.sort((a: Service, b: Service) =>
-          a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
-        ) ?? [],
-    []
-  );
-
-  const handleChangeChannels = (values: any, { action, option }: any) => {
+  const handleChangeChannels = (values: any[], { action, option }: any) => {
     setSelectedChannels(values);
-    localStorage.setItem("selectedChannels", JSON.stringify(values));
 
     if (action === "remove-option") {
       ReactGA.event({
@@ -85,50 +44,8 @@ export const Home = () => {
     }
   };
 
-  const comparisons = useMemo(() => {
-    let result = [];
-
-    for (const service of sortedServices) {
-      let count = 0;
-      let missing = [];
-
-      for (const channel of selectedChannels) {
-        if (
-          service.channels.some(
-            (instance: any) => instance.name === channel.value
-          )
-        ) {
-          count++;
-        } else {
-          missing.push(channel);
-        }
-      }
-
-      result.push({
-        name: service.name,
-        missing,
-        color: service.color,
-        percentage: Math.round((count / selectedChannels.length) * 100) || 0,
-      });
-
-      result.sort((a: any, b: any) =>
-        a.percentage < b.percentage ? 1 : a.percentage > b.percentage ? -1 : 0
-      );
-    }
-
-    return result;
-  }, [selectedChannels, sortedServices]);
-
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: "/" });
-  }, []);
-
-  useEffect(() => {
-    const cachedChannels = localStorage.getItem("selectedChannels");
-
-    if (cachedChannels) {
-      setSelectedChannels(JSON.parse(cachedChannels));
-    }
   }, []);
 
   return (
@@ -142,9 +59,9 @@ export const Home = () => {
           <p>Select your desired channels to view comparisons below:</p>
           <Select
             onChange={handleChangeChannels}
-            options={sortedChannelOptions}
+            options={channelOptions}
             placeholder="Select your channels to compare services..."
-            value={sortedSelectedChannels}
+            value={selectedChannels}
           />
         </div>
       </header>
