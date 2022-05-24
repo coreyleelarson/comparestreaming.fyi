@@ -1,1 +1,6 @@
-:root {}
+:root {
+  --color-blue: #0353A4;
+  --color-dark-gray: #222;
+  --color-white: #FFF;
+  --color-off-white: #F7F7F7;
+}

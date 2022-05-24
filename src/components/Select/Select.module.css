@@ -1,5 +1,5 @@
 .select {
-  color: #222;
+  color: var(--color-dark-gray);
   text-align: left;
   z-index: 999;
 }

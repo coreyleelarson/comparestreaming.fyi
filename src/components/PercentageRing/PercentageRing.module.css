@@ -1,7 +1,7 @@
 .container {
   --ring-thickness: 20%;
 
-  background-color: #F0F0F0;
+  background-color: var(--color-off-white);
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -15,7 +15,7 @@
   padding-top: 100%;
 }
 .container:after {
-  background-color: #FFF;
+  background-color: var(--color-white);
   border-radius: 50%;
   content: '';
   display: block;

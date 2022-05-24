@@ -1,8 +1,11 @@
 .utility-header {
-  background-color: #222;
+  background-color: var(--color-dark-gray);
   margin-bottom: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .utility-header :global(.container) {
@@ -22,11 +25,11 @@
 
 .utility-header a {
   display: flex;
-  color: #FFF;
+  color: var(--color-white);
 }
 
 .utility-header svg {
-  fill: #FFF;
+  fill: var(--color-white);
   height: 2.5rem;
   width: auto;
 }

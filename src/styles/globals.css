@@ -3,8 +3,8 @@ html {
 }
 
 body {
-  background-image: linear-gradient(#0353A4 350px, #F7F7F7 350px);
-  color: #FFF;
+  background-image: linear-gradient(var(--color-blue) 350px, var(--color-off-white) 350px);
+  color: var(--color-white);
   font-family: 'Lato', sans-serif;
   font-size: 1.6rem;
   text-align: center;
