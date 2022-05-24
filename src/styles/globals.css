@@ -3,8 +3,7 @@ html {
 }
 
 body {
-  background-color: var(--color-off-white);
-  /* background-image: linear-gradient(var(--color-blue) 350px, var(--color-off-white) 350px); */
+  background-color: var(--color-dark-gray);
   color: var(--color-white);
   font-family: 'Lato', sans-serif;
   font-size: 1.6rem;
@@ -24,6 +23,11 @@ h1 {
 
 h2 {
   font-size: 1.8rem;
+}
+
+main {
+  background-color: var(--color-off-white);
+  color: var(--color-dark-gray);
 }
 
 .container {

@@ -8,6 +8,7 @@ import { huluData } from "../../data/hulu";
 import { philoData } from "../../data/philo";
 import { slingData } from "../../data/sling";
 import { youtubeData } from "../../data/youtube";
+import spaceVideo from "../../assets/videos/space.mp4";
 import { Service } from "../../types";
 import styles from "./Home.module.css";
 
@@ -133,6 +134,9 @@ export const Home = () => {
   return (
     <>
       <header className={styles.header}>
+        <video autoPlay muted loop>
+          <source src={spaceVideo} type="video/mp4" />
+        </video>
         <div className="container">
           <h1>Compare Streaming TV Services</h1>
           <p>Select your desired channels to view comparisons below:</p>

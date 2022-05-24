@@ -1,11 +1,28 @@
 .header {
   background-color: var(--color-blue);
+  color: var(--color-white);
+  margin-bottom: -7rem;
   padding-top: 3rem;
   padding-bottom: 10rem;
-  margin-bottom: -7rem;
+  position: relative;
+}
+.header video {
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.header :global(.container) {
+  position: relative;
 }
 .header p {
   margin-bottom: 2rem;
+}
+
+.comparisons {
+  padding-bottom: 5rem;
 }
 
 .list {
