@@ -1,6 +1,8 @@
 {
   "name": "comparestreaming",
   "version": "0.1.0",
+  "author": "Corey Larson <coreyleelarson@gmail.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "lint": "eslint",
