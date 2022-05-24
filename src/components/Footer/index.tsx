@@ -8,7 +8,11 @@ export const Footer = () => (
       </strong>
       <p>
         For bugs, issues, questions, or comments,{" "}
-        <a href="https://www.github.com/coreyleelarson/comparestreaming/issues">
+        <a
+          href="https://www.github.com/coreyleelarson/comparestreaming/issues"
+          target="_blank"
+          rel="noreferrer"
+        >
           file an issue
         </a>{" "}
         or <a href="mailto:coreyleelarson@gmail.com">email me</a>!

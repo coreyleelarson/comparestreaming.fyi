@@ -6,7 +6,11 @@ export const UtilityHeader = () => (
     <div className="container">
       <ul>
         <li>
-          <a href="https://www.github.com/coreyleelarson/comparestreaming">
+          <a
+            href="https://www.github.com/coreyleelarson/comparestreaming"
+            target="_blank"
+            rel="noreferrer"
+          >
             <GithubIcon />
           </a>
         </li>
