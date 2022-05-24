@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { useEffect, useMemo, useState } from "react";
+import ReactGA from "react-ga4";
 import { PercentageRing } from "../../components/PercentageRing";
 import { Select } from "../../components/Select";
 import { fuboData } from "../../data/fubo";
@@ -59,9 +60,30 @@ export const Home = () => {
     []
   );
 
-  const handleChangeChannels = (values: any) => {
+  const handleChangeChannels = (values: any, { action, option }: any) => {
     setSelectedChannels(values);
     localStorage.setItem("selectedChannels", JSON.stringify(values));
+
+    console.log(values, action);
+
+    if (action === "remove-option") {
+      ReactGA.event({
+        category: "Channels",
+        action: "Remove Channel",
+        label: option.value,
+      });
+    } else if (action === "select-option") {
+      ReactGA.event({
+        category: "Channels",
+        action: "Select Channel",
+        label: option.value,
+      });
+    } else if (action === "clear") {
+      ReactGA.event({
+        category: "Channels",
+        action: "Clear Channels",
+      });
+    }
   };
 
   const comparisons = useMemo(() => {
@@ -97,6 +119,10 @@ export const Home = () => {
 
     return result;
   }, [selectedChannels, sortedServices]);
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/" });
+  }, []);
 
   useEffect(() => {
     const cachedChannels = localStorage.getItem("selectedChannels");
