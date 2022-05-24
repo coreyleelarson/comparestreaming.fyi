@@ -5,6 +5,7 @@ export const huluData: Service = {
   name: Services.Hulu,
   channels: [
     { name: Channels.ABC },
+    { name: Channels.ABCLocalIsh },
     { name: Channels.AE },
     { name: Channels.AnimalPlanet },
     { name: Channels.BET },

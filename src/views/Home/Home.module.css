@@ -3,12 +3,14 @@
 }
 
 .list {
-  align-items: center;
-  display: grid;
-  gap: 3rem;
-  grid-template-columns: repeat(3, 1fr);
+  --list-columns: 1;
+  --list-gap: 2rem;
+
+  align-items: stretch;
+  display: flex;
+  gap: var(--list-gap);
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -16,16 +18,31 @@
 }
 
 .item {
+  align-items: center;
   background-color: #FFF;
   border-radius: 3rem;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
   color: #222;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   padding: 4rem;
   position: relative;
+  width: calc((100% - (var(--list-gap) * (var(--list-columns) - 1))) / var(--list-columns));
 }
 .item h2 {
   top: 1rem;
   font-size: 1.6rem;
   position: absolute;
   left: 2rem;
+}
+
+.missing {
+  font-size: 1.4rem;
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    --list-columns: 3;
+  }
 }

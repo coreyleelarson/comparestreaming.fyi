@@ -1,14 +1,16 @@
 import classNames from "classnames";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PercentageRing } from "../../components/PercentageRing";
 import { Select } from "../../components/Select";
+import { fuboData } from "../../data/fubo";
 import { huluData } from "../../data/hulu";
+import { philoData } from "../../data/philo";
 import { slingData } from "../../data/sling";
 import { youtubeData } from "../../data/youtube";
 import { Service } from "../../types";
 import styles from "./Home.module.css";
 
-const services = [huluData, slingData, youtubeData];
+const services = [huluData, fuboData, philoData, slingData, youtubeData];
 
 export const Home = () => {
   const [selectedChannels, setSelectedChannels] = useState<any[]>([]);
@@ -57,7 +59,10 @@ export const Home = () => {
     []
   );
 
-  const handleChangeChannels = (values: any) => setSelectedChannels(values);
+  const handleChangeChannels = (values: any) => {
+    setSelectedChannels(values);
+    localStorage.setItem("selectedChannels", JSON.stringify(values));
+  };
 
   const comparisons = useMemo(() => {
     let result = [];
@@ -93,6 +98,14 @@ export const Home = () => {
     return result;
   }, [selectedChannels, sortedServices]);
 
+  useEffect(() => {
+    const cachedChannels = localStorage.getItem("selectedChannels");
+
+    if (cachedChannels) {
+      setSelectedChannels(JSON.parse(cachedChannels));
+    }
+  }, []);
+
   return (
     <>
       <section className={classNames("container", styles.header)}>
@@ -114,6 +127,14 @@ export const Home = () => {
                 color={comparison.color}
                 percentage={comparison.percentage}
               />
+              {comparison.missing.length > 0 && (
+                <p className={styles.missing}>
+                  <strong>Missing:</strong>{" "}
+                  {comparison.missing
+                    .map((channel: any) => channel.label)
+                    .join(", ")}
+                </p>
+              )}
             </li>
           ))}
         </ul>
