@@ -5,7 +5,9 @@ import { Header } from "../components/Header";
 import { UtilityHeader } from "../components/UtilityHeader";
 import { Home } from "../views/Home";
 
-ReactGA.initialize("G-EDMWRBCS5Z");
+ReactGA.initialize("G-EDMWRBCS5Z", {
+  gtagOptions: { debug_mode: process.env.NODE_ENV === "development" },
+});
 
 export const App = () => (
   <>

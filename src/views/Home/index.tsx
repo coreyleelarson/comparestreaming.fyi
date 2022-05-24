@@ -64,8 +64,6 @@ export const Home = () => {
     setSelectedChannels(values);
     localStorage.setItem("selectedChannels", JSON.stringify(values));
 
-    console.log(values, action);
-
     if (action === "remove-option") {
       ReactGA.event({
         category: "Channels",
