@@ -6,6 +6,7 @@ export const Footer = () => (
       <strong>
         Copyright &copy; {new Date().getFullYear()} CompareStreaming.fyi
       </strong>
+      <p>Data Last Updated: 05/24/2022</p>
       <p>
         For bugs, issues, questions, or comments,{" "}
         <a
